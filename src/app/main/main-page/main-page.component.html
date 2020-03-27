@@ -1,0 +1,39 @@
+<div class="main-jumbotron w-100 h-100 d-flex justify-content-center align-items-center flex-column">
+  <h1>Welcome to Etiya</h1>
+  <div class="row">
+    <div class="col-12">
+      <div class="alert alert-danger" *ngIf="error">
+        <p>{{ error }}</p>
+      </div>
+      <div *ngIf="isLoading" style="text-align: center;">
+        <app-loading-spinner></app-loading-spinner>
+      </div>
+      <form [formGroup]="signInForm" (ngSubmit)="onSubmit()" *ngIf="!isLoading">
+        <div class="form-group mb-2">
+          <label for="email">Email:</label>
+          <input type="email" id="email" formControlName="email" class="form-control" placeholder="email@gmail.com">
+          <span *ngIf="!signInForm.get('email').valid && signInForm.get('email').touched" class="help-block">
+            Invalid email
+          </span>
+        </div>
+        <div class="form-group mb-2 mr-3">
+          <label for="passsword">Password:</label>
+          <input type="password" name="password" id="passsword" formControlName="password" class="form-control"
+            autocomplete="on">
+          <!-- <span *ngIf="signInForm.get('password').invalid && signInForm.get('password').touched"
+        class="help-block">
+        Invalid password
+      </span> -->
+        </div>
+        <div class="mt-5">
+          <button type="submit" class="btn btn-outline-light px-5 py-2 mx-3"
+            [disabled]="!signInForm.valid">{{isLoginMode? 'Log in' : 'Sign up'}}</button>
+          <button type="button" class="btn btn-outline-light px-5 py-2 mx-3" (click)="onSwitchMode()">Switch
+            {{ isLoginMode? 'Sign up':'Log in'}}</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+
+</div>
