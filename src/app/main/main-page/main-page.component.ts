@@ -45,12 +45,10 @@ export class MainPageComponent implements OnInit {
 
     authObs.subscribe(
       resData => {
-        console.log(resData);
         this.isLoading = false;
         this.router.navigate(['/create-user']);
       },
       errorMessage => {
-        console.log(errorMessage);
         this.error = errorMessage;
         this.isLoading = false;
       }

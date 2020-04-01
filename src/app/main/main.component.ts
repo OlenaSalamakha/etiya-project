@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 
 @Component({
-  selector: 'app-main',
-  templateUrl: './main.component.html',
-  styleUrls: ['./main.component.css']
+  selector: "app-main",
+  template: "<router-outlet></router-outlet>"
 })
-export class MainComponent  {}
+export class MainComponent {}

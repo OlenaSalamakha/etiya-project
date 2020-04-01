@@ -4,7 +4,19 @@ import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-sidebar',
-  templateUrl: './sidebar.component.html',
+  template: `<div id="sidebar-wrapper">
+  <div class="list-group list-group-flush border">
+    <div>
+      <a [routerLink] = "'/main-page'" routerLinkActive="active" class="list-group-item list-group-item-action">Main page</a>
+    </div>
+    <div *ngIf="isAuthenticated">
+      <a [routerLink] = "'/user-info'" routerLinkActive="active" class="list-group-item list-group-item-action">User info</a>
+    </div>
+    <div *ngIf="isAuthenticated">
+      <a [routerLink] = "'/create-user'" routerLinkActive="active" class="list-group-item list-group-item-action">Create user</a>
+    </div>
+  </div>
+</div>`,
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent implements OnInit, OnDestroy {
