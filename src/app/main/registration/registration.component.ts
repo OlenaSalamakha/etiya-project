@@ -41,18 +41,18 @@ export class RegistrationComponent implements OnInit {
 
   ngOnInit() {
     this.generalForm = this.formBuilder.group({
-      firstname: "",
-      lastname: "",
-      username: "",
-      email: "",
-      phone: "",
-      password: "",
-      typeOfAddress: "",
-      city: "",
-      country: "",
-      street: "",
-      postalCode: "",
-      additionalAddress: ""
+      firstname: [null],
+      lastname: [null],
+      username: [null],
+      email: [null],
+      phone: [null],
+      password: [null],
+      typeOfAddress: [null],
+      city: [null],
+      country: [null],
+      street: [null],
+      postalCode: [null],
+      additionalAddress: [null]
     });
   }
 
