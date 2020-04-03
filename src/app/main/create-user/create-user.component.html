@@ -1,42 +1,44 @@
-<h4 class="pt-3 px-3 d-block font-weight-bold">Create new user</h4>
-<h6 class="mt-1 px-3 d-block font-weight-bold">Main Info</h6>
 <div class="container d-flex justify-content-center">
-  <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+  <form [formGroup]="signupForm">
     <div id="user-data">
       <div class="form-group mb-2">
         <label for="firstname">First Name:
         </label>
         <input type="text" id="firstname" formControlName="firstname" class="form-control">
-        <span *ngIf="!signupForm.get('firstname').valid && signupForm.get('firstname').touched" class="help-block">
+        <span *ngIf="checkForm('firstname')" class=" help-block">
           Please, enter firstname
         </span>
       </div>
       <div class="form-group mb-2">
         <label for="lastname">Last Name:</label>
         <input type="text" id="lastname" formControlName="lastname" class="form-control">
-        <span *ngIf="!signupForm.get('lastname').valid && signupForm.get('lastname').touched" class="help-block">
+        <span *ngIf="checkForm('lastname')" class="help-block">
           Please, enter lastname
         </span>
       </div>
       <div class="form-group mb-2">
         <label for="username">User Name:</label>
         <input type="text" id="username" formControlName="username" class="form-control">
-        <span *ngIf="!signupForm.get('username').valid && signupForm.get('username').touched" class="help-block">
+        <span *ngIf="checkForm('username')" class="help-block">
           Please, enter username
         </span>
       </div>
       <div class="form-group mb-2">
         <label for="phone">Phone:</label>
         <input type="phone" id="phone" formControlName="phone" class="form-control">
-        <span *ngIf="!signupForm.get('phone').valid && signupForm.get('phone').touched" class="help-block">
-          Phone must contain only numbers
+        <small class="text-secondary">
+          Only numbers are required
+        </small>
+        <br>
+        <span *ngIf="checkForm('phone')" class="help-block">
+          Valid number phone is required
         </span>
       </div>
       <div class="form-group mb-2">
         <label for="email">Email:</label>
         <input type="email" id="email" formControlName="email" class="form-control">
-        <span *ngIf="!signupForm.get('email').valid && signupForm.get('email').touched" class="help-block">
-          Please, enter valid email
+        <span *ngIf="checkForm('email')" class="help-block">
+          Valid email is required
         </span>
       </div>
       <div class="d-flex justify-content-start">
@@ -48,25 +50,26 @@
             Require 6 characters at least
           </small>
           <br>
-          <span *ngIf="signupForm.get('password').invalid && signupForm.get('password').touched" class="help-block">
-            Please, enter password
+          <span *ngIf="checkForm('password')" class="help-block">
+            Valid password is required
           </span>
         </div>
         <div class="form-group mb-2">
-          <label for="confirm-password">Confirm password:</label>
-          <input type="password" name="confirm-password" id="confirm-password" formControlName="confirm-password"
+          <label for="confirm_password">Confirm password:</label>
+          <input type="password" name="confirm_password" id="confirm_password" formControlName="confirm_password"
             class="form-control" autocomplete="on">
-          <span *ngIf="signupForm.get('confirm-password').invalid && signupForm.get('confirm-password').touched"
-            class="help-block">
-            <span *ngIf="signupForm.get('confirm-password').errors['required']">Please, repeat password</span>
-            <span *ngIf="signupForm.get('confirm-password').errors['compare']" class="bg-dander">Password must
+          <span *ngIf="checkForm('confirm_password')" class="help-block">
+            <span *ngIf="signupForm.get('confirm_password').errors['required']">Repeat password</span>
+            <span *ngIf="signupForm.get('confirm_password').errors['compare']" class="bg-dander">Password must
               match</span>
           </span>
         </div>
       </div>
     </div>
     <div class="d-flex justify-content-end my-3">
-      <button type="submit" mat-raised-button color="primary" [disabled]="!signupForm.valid">Next</button>
+      <button mat-raised-button color="primary" type="button" (click)="resetAddress()">Clear</button>
+      <button mat-raised-button matStepperNext color="primary" type="button" (click)="sendUserProfile()" class="ml-2"
+        [disabled]="!signupForm.valid">Next</button>
     </div>
   </form>
 </div>

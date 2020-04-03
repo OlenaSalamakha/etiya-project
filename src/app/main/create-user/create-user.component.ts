@@ -1,42 +1,46 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, Validators, FormGroup } from '@angular/forms';
-import { compareValidator } from 'src/app/shared/directives/compare-validator.directive';
-import { Router } from '@angular/router';
-import { DataStorageService } from 'src/app/shared/services/data-storage.service';
-
+import { Component, OnInit, Output, EventEmitter } from "@angular/core";
+import { Validators, FormGroup, FormBuilder } from "@angular/forms";
+import { compareValidator } from "src/app/shared/directives/compare-validator.directive";
+import { Router } from "@angular/router";
 
 @Component({
-  selector: 'app-create-user',
-  templateUrl: './create-user.component.html',
-  styleUrls: ['./create-user.component.css']
+  selector: "app-create-user",
+  templateUrl: "./create-user.component.html",
+  styleUrls: ["./create-user.component.css"]
 })
-
 export class CreateUserComponent implements OnInit {
   signupForm: FormGroup;
+  @Output() sendUserProfileEvent = new EventEmitter<FormGroup>();
 
-  constructor(private router: Router, private dataStorageService: DataStorageService) { }
+  sendUserProfile() {
+    this.sendUserProfileEvent.emit(this.signupForm);
+  }
+
+  constructor(private router: Router, private formBuilder: FormBuilder) {}
 
   ngOnInit() {
-    this.signupForm = new FormGroup({
-      'firstname': new FormControl(null, Validators.required),
-      'lastname': new FormControl(null, Validators.required),
-      'username': new FormControl(null, Validators.required),
-      'email': new FormControl(null, [Validators.required, Validators.email]),
-      'phone': new FormControl(null, [Validators.required, Validators.pattern(/^[0-9 ]+$/)]),
-      'password': new FormControl(null, [Validators.required, Validators.minLength(6)]),
-      'confirm-password': new FormControl(null, [Validators.required, compareValidator('password')])
+    this.signupForm = this.formBuilder.group({
+      firstname: ["", Validators.required],
+      lastname: ["", Validators.required],
+      username: ["", Validators.required],
+      email: ["", [Validators.required, Validators.email]],
+      phone: ["", [Validators.required, Validators.pattern(/^[0-9 ]+$/)]],
+      password: ["", [Validators.required, Validators.minLength(6)]],
+      confirm_password: [
+        "",
+        [Validators.required, compareValidator("password")]
+      ]
     });
-
   }
 
-  onSubmit() {
-    this.onPostData();
-    this.router.navigateByUrl('/address');
+  checkForm(fieldname: string) {
+    return (
+      !this.signupForm.get(fieldname).valid &&
+      this.signupForm.get(fieldname).touched
+    );
   }
 
-  onPostData() {
-    this.dataStorageService.storeRegisterData(this.signupForm.value)
-      .subscribe(response => console.log(`post: ${response}`));
+  resetAddress() {
+    this.signupForm.reset();
   }
 }
-

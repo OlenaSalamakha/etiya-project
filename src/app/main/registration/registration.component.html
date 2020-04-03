@@ -1,0 +1,22 @@
+<h4 class="pt-3 px-3 d-block font-weight-bold">Registration</h4>
+<div class="container d-flex justify-content-center">
+  <mat-horizontal-stepper linear #stepper>
+    <mat-step сopmleted=false>
+      <ng-template matStepLabel>Fill out user data</ng-template>
+      <app-create-user (sendUserProfileEvent)="recieveFromCreateUser($event)"></app-create-user>
+    </mat-step>
+    <mat-step сopmleted=false>
+      <ng-template matStepLabel>Fill out address</ng-template>
+      <app-address (sendUserAddressEvent)="recieveFromAddress($event)"></app-address>
+    </mat-step>
+    <mat-step сopmleted=false>
+      <ng-template matStepLabel>Done</ng-template>
+      <p>You are now done!</p>
+      <div>
+        <button mat-raised-button color="primary" matStepperPrevious>Back</button>
+        <button mat-raised-button color="primary" (click)="stepper.reset()" class="ml-2">Reset</button>
+        <button mat-raised-button color="primary" (click)="onSave()" class="ml-2">Save</button>
+      </div>
+    </mat-step>
+  </mat-horizontal-stepper>
+</div>
