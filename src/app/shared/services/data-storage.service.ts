@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { UserData } from "../modules/user-data.model";
+import { UserData } from "../models/user-data.model";
 
 @Injectable({ providedIn: "root" })
 export class DataStorageService {

@@ -1,7 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
-@import url('https://fonts.googleapis.com/css?family=Slabo+27px&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
 
-app-header, app-footer, app-main, app-address, app-sidebar {
-    font-family: 'Slabo 27px', serif;
+app-header,
+app-footer,
+app-main,
+app-address,
+app-create-user,
+app-sidebar,
+app-registration {
+  font-family: 'Roboto', sans-serif;
 }
 
+@media (max-width: 780px) {
+  app-sidebar {
+    display: none;
+  }
+}

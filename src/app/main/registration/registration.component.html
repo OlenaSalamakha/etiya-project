@@ -1,4 +1,4 @@
-<h4 class="pt-3 px-3 d-block font-weight-bold">Registration</h4>
+<h4 class="pt-3 px-3 d-block font-weight-bold">Sign Up</h4>
 <div class="container d-flex justify-content-center">
   <mat-horizontal-stepper linear #stepper>
     <mat-step сopmleted=false>
@@ -11,10 +11,32 @@
     </mat-step>
     <mat-step сopmleted=false>
       <ng-template matStepLabel>Done</ng-template>
-      <p>You are now done!</p>
-      <div>
+      <div class="d-flex justify-content-center flex-column">
+        <div class="p-3 rounded data-box d-flex flex-column">
+          <p> Firstname: <span>{{ getUserValue('firstname')}}</span></p>
+          <p> Lastname: <span>{{ getUserValue('lastname')}}</span></p>
+          <p> Username: <span> {{ getUserValue('username')}}</span> </p>
+          <p> Phone: <span>{{ getUserValue('phone')}} </span> </p>
+          <p> Email <span> {{ getUserValue('email')}}</span></p>
+          <p> Password: <span>{{ getUserValue('password')}} </span></p>
+        </div>
+        <div class="border-top p-3 rounded d-flex flex-column">
+          <p> Type of address: <span>{{ getUserValue('typeOfAddress')}} </span></p>
+          <p> Country: <span> {{ getUserValue('country')}}</span> </p>
+          <p> City: <span>{{ getUserValue('city')}} </span> </p>
+          <p> Street: <span>{{ getUserValue('street')}} </span></p>
+          <p> Postal code: <span> {{ getUserValue('postalCode') }}</span></p>
+        </div>
+        <div class="border-top p-3 rounded d-flex flex-column" *ngFor="let addr of getUserValue('additionalAddress')">
+          <p> Type of address: <span>{{addr.typeOfAddress}}</span></p>
+          <p> Country: <span> {{addr.country}}</span> </p>
+          <p> City: <span>{{ addr.city}} </span> </p>
+          <p> Street: <span>{{ addr.street}} </span></p>
+          <p> Postal code: <span> {{ addr.postalCode }}</span></p>
+        </div>
+      </div>
+      <div class="d-flex justify-content-end">
         <button mat-raised-button color="primary" matStepperPrevious>Back</button>
-        <button mat-raised-button color="primary" (click)="stepper.reset()" class="ml-2">Reset</button>
         <button mat-raised-button color="primary" (click)="onSave()" class="ml-2">Save</button>
       </div>
     </mat-step>

@@ -57,12 +57,13 @@
           </mat-error>
         </mat-form-field>
       </div>
-      <button mat-raised-button type="button" (click)="onAddAddress()" class="float-right">+</button>
+      <button mat-raised-button type="button" [disabled]="!addressForm.valid" (click)="onAddAddress()"
+        class="float-right">+</button>
     </div>
-    <div *ngFor="let addressType of addressArray.controls; let i = index">
+    <div *ngFor="let addressType of addressArray.controls; let index = index">
       <div [formGroup]="addressType">
         <div class="address-data">
-          <button type="button" (click)="removeAddress(i)" class="close" data-dismiss="modal" aria-label="Close">
+          <button type="button" (click)="removeAddress(index)" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
           <div class="form-group mb-2">
@@ -121,17 +122,16 @@
               </mat-error>
             </mat-form-field>
           </div>
-          <button mat-raised-button type="button" (click)="onAddAddress()" class="float-right">+</button>
+          <button mat-raised-button type="button" [disabled]="!addressForm.valid" (click)="onAddAddress()"
+            class="float-right">+</button>
         </div>
       </div>
     </div>
     <div class="d-flex justify-content-end my-3">
       <button mat-raised-button color="primary" type="button" (click)="resetAddress()">Clear</button>
-      <button mat-raised-button color="primary" matStepperPrevious class="ml-2">Previous</button>
+      <button mat-raised-button color="primary" matStepperPrevious class="ml-2">Back</button>
       <button mat-raised-button color="primary" type="button" (click)="sendUserAddress()" matStepperNext
         [disabled]="!addressForm.valid" class="ml-2">Next</button>
     </div>
   </form>
-
-
 </div>

@@ -1,19 +1,21 @@
 #sidebar-wrapper {
-    min-height: 100vh;
-    background-color: white!important;
-  }
-  
-  #sidebar-wrapper .list-group {
-    width: 15rem;
-    text-align: center;
-    font-size: 1.2rem;
-  }
+  min-height: 100vh;
+  background-color: white;
+}
 
-  #sidebar-wrapper .list-group a:hover {
-    box-sizing: border-box; 
-  }
-  .list-group-item.active {
-    background-color: rgb(206, 205, 202);
-    border: none;
-    color: rgb(255, 255, 255);
-  }
+#sidebar-wrapper .list-group {
+  width: 180px;
+  text-align: center;
+  font-size: 14px;
+}
+
+#sidebar-wrapper .list-group a:hover {
+  box-sizing: border-box;
+  background-color: rgb(219, 219, 224);
+}
+
+.list-group-item.active {
+  background-color: rgb(241, 241, 247);
+  border: none;
+  color: black;
+}

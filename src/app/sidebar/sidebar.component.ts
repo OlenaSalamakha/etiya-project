@@ -1,6 +1,4 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { AuthService } from '../shared/services/auth.service';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-sidebar',
@@ -9,29 +7,20 @@ import { Subscription } from 'rxjs';
     <div>
       <a [routerLink] = "'/main-page'" routerLinkActive="active" class="list-group-item list-group-item-action">Main page</a>
     </div>
-    <div *ngIf="isAuthenticated">
+    <div>
       <a [routerLink] = "'/user-info'" routerLinkActive="active" class="list-group-item list-group-item-action">User info</a>
     </div>
-    <div *ngIf="isAuthenticated">
-      <a [routerLink] = "'/create-user'" routerLinkActive="active" class="list-group-item list-group-item-action">Create user</a>
+    <div>
+      <a [routerLink] = "'/registration'" routerLinkActive="active" class="list-group-item list-group-item-action">Create user</a>
     </div>
   </div>
 </div>`,
   styleUrls: ['./sidebar.component.css']
 })
-export class SidebarComponent implements OnInit, OnDestroy {
-  isAuthenticated = false;
-  private userSub: Subscription;
+export class SidebarComponent implements OnInit {
 
-  constructor(private authService: AuthService) { }
+  constructor() { }
 
-  ngOnInit() {
-    this.userSub = this.authService.user.subscribe(user => {
-      this.isAuthenticated = !!user;
-    });
-  }
+  ngOnInit() { }
 
-  ngOnDestroy() {
-    this.userSub.unsubscribe();
-  }
 }
