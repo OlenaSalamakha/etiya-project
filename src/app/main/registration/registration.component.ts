@@ -29,6 +29,7 @@ export class RegistrationComponent implements OnInit {
   recievedUserAddress: AddressData;
   generalForm: FormGroup;
 
+
   constructor(
     private dataStorageService: DataStorageService,
     private formBuilder: FormBuilder
