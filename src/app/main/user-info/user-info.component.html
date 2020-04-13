@@ -2,21 +2,42 @@
 <div class="container">
   <div class="row flex-column">
     <div class="search-user">
-      <mat-form-field class="example-full-width my-3">
-        <mat-label class="m-2">
-          First name</mat-label>
-        <input matInput type="search" placeholder="Search first name" [(ngModel)]="searchText">
-      </mat-form-field>
+      <form [formGroup]="searchform">
+        <mat-form-field class="example-full-width my-3 mx-3">
+          <mat-label class="m-2">
+            First name</mat-label>
+          <input matInput type="search" placeholder="Start search" formControlName="firstname">
+        </mat-form-field>
+        <mat-form-field class="example-full-width my-3 mx-3">
+          <mat-label class="m-2">
+            Last name</mat-label>
+          <input matInput type="search" placeholder="Start search" formControlName="lastname">
+        </mat-form-field>
+        <mat-form-field class="example-full-width my-3 mx-3">
+          <mat-label class="m-2">
+            Username</mat-label>
+          <input matInput type="search" placeholder="Start search" formControlName="uname">
+        </mat-form-field>
+        <mat-form-field class="example-full-width my-3 mx-3">
+          <mat-label class="m-2">
+            Email</mat-label>
+          <input matInput type="search" placeholder="Start search" formControlName="email">
+        </mat-form-field>
+        <mat-form-field class=" example-full-width my-3 mx-3">
+          <mat-label class="m-2">
+            Phone</mat-label>
+          <input matInput type="search" placeholder="Start search" formControlName="phone">
+        </mat-form-field>
+      </form>
       <div class="d-flex justify-content-start my-3">
-        <button mat-raised-button color="primary">Clear</button>
-        <button mat-raised-button color="primary" (click)="onFind()" class="ml-2">Find</button>
+        <button mat-raised-button color="primary" (click)="onClear()">Clear</button>
+        <button mat-raised-button color="primary" (click)="onFound()" class="ml-2">Find</button>
       </div>
     </div>
     <div>
       <table class="table border shadow">
         <thead>
           <tr>
-            <th scope="col" class="text-center">№</th>
             <th scope="col" class="text-center">First Name</th>
             <th scope="col" class="text-center">Last Name</th>
             <th scope="col" class="text-center">User Name</th>
@@ -26,15 +47,15 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let user of loadedUsers | filter:searchText; let index =index">
-            <td class="text-center">{{index}}</td>
-            <td class="text-center">{{user.firstname}}</td>
+          <tr *ngFor="let user of loadedUsers">
+            <td class=" text-center">{{user.firstname}}</td>
             <td class="text-center">{{user.lastname}}</td>
             <td class="text-center">{{user.username}}</td>
             <td class="text-center">{{user.phone}}</td>
             <td class="text-center">{{user.email}}</td>
             <td class="text-center">{{user.password}}</td>
-            <td class="text-center"><button mat-raised-button>Update</button></td>
+            <td class="text-center"><button mat-raised-button>Update</button>
+            </td>
             <td class="text-center"><button mat-raised-button>Delete</button></td>
           </tr>
         </tbody>
@@ -42,7 +63,6 @@
       <table class="table border shadow">
         <thead>
           <tr>
-            <th scope="col" class="text-center">№</th>
             <th scope="col" class="text-center">Type of address</th>
             <th scope="col" class="text-center">Country</th>
             <th scope="col" class="text-center">City</th>
@@ -51,8 +71,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let user of loadedUsers | filter:searchText; let index =index">
-            <td class="text-center">{{index}}</td>
+          <tr *ngFor="let user of loadedUsers">
             <td class="text-center">{{user.typeOfAddress}}</td>
             <td class="text-center">{{user.country}}</td>
             <td class="text-center">{{user.city}}</td>
@@ -61,16 +80,17 @@
             <td class="text-center"><button mat-raised-button>Update</button></td>
             <td class="text-center"><button mat-raised-button>Delete</button></td>
           </tr>
-          <tr *ngFor="let item of this.loadedAddress; let index =index">
-            <td class="text-center">{{index}}</td>
-            <td class="text-center">{{item.typeOfAddress}}</td>
-            <td class="text-center">{{item.country}}</td>
-            <td class="text-center">{{item.city}}</td>
-            <td class="text-center">{{item.street}}</td>
-            <td class="text-center">{{item.postalCode}}</td>
-            <td class="text-center"><button mat-raised-button>Update</button></td>
-            <td class="text-center"><button mat-raised-button>Delete</button></td>
-          </tr>
+          <ng-container *ngFor="let user of loadedUsers">
+            <tr *ngFor="let address of user.additionalAddress">
+              <td class="text-center">{{address.typeOfAddress}}</td>
+              <td class="text-center">{{address.country}}</td>
+              <td class="text-center">{{address.city}}</td>
+              <td class="text-center">{{address.street}}</td>
+              <td class="text-center">{{address.postalCode}}</td>
+              <td class="text-center"><button mat-raised-button>Update</button></td>
+              <td class="text-center"><button mat-raised-button>Delete</button></td>
+            </tr>
+          </ng-container>
         </tbody>
       </table>
     </div>
