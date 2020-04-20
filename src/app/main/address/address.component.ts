@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Country } from 'src/app/shared/models/country.model';
-import { DataService } from 'src/app/shared/services/data.service';
+import { CountryService } from 'src/app/shared/services/country.service';
 import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { Address } from 'src/app/shared/models/typeOfAddress.model';
 import { AddressData } from 'src/app/shared/models/userAddresData.model';
@@ -29,7 +29,7 @@ export class AddressComponent implements OnInit {
   ];
 
   constructor(
-    private dataService: DataService,
+    private dataService: CountryService,
     private formBuilder: FormBuilder
   ) { }
 

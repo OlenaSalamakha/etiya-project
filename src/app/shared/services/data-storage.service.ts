@@ -4,7 +4,7 @@ import { UserData } from "../models/user-data.model";
 
 @Injectable({ providedIn: "root" })
 export class DataStorageService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   storeRegisterData(user: UserData) {
     return this.http.post(

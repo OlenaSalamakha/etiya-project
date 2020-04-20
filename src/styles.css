@@ -7,7 +7,8 @@ app-main,
 app-address,
 app-create-user,
 app-sidebar,
-app-registration {
+app-registration,
+app-user-info {
   font-family: 'Roboto', sans-serif;
 }
 

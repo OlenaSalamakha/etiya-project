@@ -5,10 +5,10 @@ import { Country } from "../models/country.model";
 @Injectable({
   providedIn: "root"
 })
-export class DataService {
+export class CountryService {
   apiUrl = "https://restcountries.eu/rest/v2/";
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
   getCountry() {
     return this.http.get<Country[]>(this.apiUrl);
   }

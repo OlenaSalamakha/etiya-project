@@ -22,10 +22,11 @@ import { MainPageComponent } from './main/main-page/main-page.component';
 import { CompareValidatorDirective } from './shared/directives/compare-validator.directive';
 import { AddressComponent } from './main/address/address.component';
 
-import { DataService } from './shared/services/data.service';
 import { UserInfoComponent } from './main/user-info/user-info.component';
 import { LoadingSpinnerComponent } from './shared/loading-spinner/loading.spinner.component';
 import { RegistrationComponent } from './main/registration/registration.component';
+import { CountryService } from './shared/services/country.service';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 @NgModule({
   declarations: [
@@ -54,9 +55,10 @@ import { RegistrationComponent } from './main/registration/registration.componen
     MatButtonModule,
     MatStepperModule,
     MatIconModule,
-    HttpClientModule
+    HttpClientModule,
+    Ng2SearchPipeModule
   ],
-  providers: [DataService],
+  providers: [CountryService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
