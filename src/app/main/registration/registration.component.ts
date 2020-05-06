@@ -1,39 +1,44 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
-import { DataStorageService } from 'src/app/shared/services/data-storage.service';
-import { CreatedUser } from 'src/app/shared/models/create-user.model';
-import { AddressData } from 'src/app/shared/models/userAddresData.model';
+import { Component, OnInit } from "@angular/core";
+import { FormGroup, FormBuilder } from "@angular/forms";
+import { DataStorageService } from "src/app/shared/services/data-storage.service";
+import { CreatedUser } from "src/app/shared/models/create-user.model";
+import { AddressData } from "src/app/shared/models/userAddresData.model";
+import { Router } from "@angular/router";
 
 @Component({
-  selector: 'app-registration',
-  templateUrl: './registration.component.html',
-  styles: [`p {
-    padding: 0;
-    margin: 0;
-    font-family: inherit;
-    font-size: 18px;
-    display: inline;
-  }
-  
-  .data-box {
-    width: 100%;
-  }
-  
-  span {
-    color: grey;
-    font-style: italic;
-  }`],
+  selector: "app-registration",
+  templateUrl: "./registration.component.html",
+  styles: [
+    `
+      p {
+        padding: 0;
+        margin: 0;
+        font-family: inherit;
+        font-size: 18px;
+        display: inline;
+      }
+
+      .data-box {
+        width: 100%;
+      }
+
+      span {
+        color: grey;
+        font-style: italic;
+      }
+    `,
+  ],
 })
 export class RegistrationComponent implements OnInit {
   recievedUserProfile: CreatedUser;
   recievedUserAddress: AddressData;
   generalForm: FormGroup;
 
-
   constructor(
     private dataStorageService: DataStorageService,
-    private formBuilder: FormBuilder
-  ) { }
+    private formBuilder: FormBuilder,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.generalForm = this.formBuilder.group({
@@ -88,5 +93,6 @@ export class RegistrationComponent implements OnInit {
 
   onSave() {
     this.onPostData();
+    this.router.navigateByUrl("/user-info");
   }
 }

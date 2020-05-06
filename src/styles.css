@@ -12,6 +12,7 @@ app-user-info {
   font-family: 'Roboto', sans-serif;
 }
 
+
 @media (max-width: 780px) {
   app-sidebar {
     display: none;

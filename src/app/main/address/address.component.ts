@@ -15,6 +15,10 @@ import { AddressData } from 'src/app/shared/models/userAddresData.model';
         border-radius: 10px;
         margin-bottom: 25px;
       }
+      button {
+        outline: 0;
+        border: 0;
+      }
     `,
   ],
 })

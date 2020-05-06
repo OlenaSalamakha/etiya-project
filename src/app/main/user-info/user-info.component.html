@@ -33,6 +33,7 @@
         <button mat-raised-button color="primary" (click)="onClear()">Clear</button>
         <button mat-raised-button color="primary" (click)="onFound()" class="ml-2">Find</button>
       </div>
+
     </div>
     <div>
       <table class="table border shadow">
@@ -54,9 +55,10 @@
             <td class="text-center">{{user.phone}}</td>
             <td class="text-center">{{user.email}}</td>
             <td class="text-center">{{user.password}}</td>
-            <td class="text-center"><button mat-raised-button>Update</button>
+            <td class="text-center"><button mat-raised-button (click)="updateUser(user)">Update</button>
             </td>
-            <td class="text-center"><button mat-raised-button>Delete</button></td>
+            <td class="text-center"><button mat-raised-button (click)="deleteUserDialog(user)">Delete</button>
+            </td>
           </tr>
         </tbody>
       </table>
@@ -78,7 +80,8 @@
             <td class="text-center">{{user.street}}</td>
             <td class="text-center">{{user.postalCode}}</td>
             <td class="text-center"><button mat-raised-button>Update</button></td>
-            <td class="text-center"><button mat-raised-button>Delete</button></td>
+            <td class="text-center"><button mat-raised-button>Delete</button>
+            </td>
           </tr>
           <ng-container *ngFor="let user of loadedUsers">
             <tr *ngFor="let address of user.additionalAddress">

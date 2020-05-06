@@ -1,18 +1,17 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { Validators, FormGroup, FormBuilder } from '@angular/forms';
-import { compareValidator } from 'src/app/shared/directives/compare-validator.directive';
-import { CreatedUser } from 'src/app/shared/models/create-user.model';
-
+import { Component, OnInit, Output, EventEmitter } from "@angular/core";
+import { Validators, FormGroup, FormBuilder } from "@angular/forms";
+import { compareValidator } from "src/app/shared/directives/compare-validator.directive";
+import { CreatedUser } from "src/app/shared/models/create-user.model";
 @Component({
-  selector: 'app-create-user',
-  templateUrl: './create-user.component.html',
-  styleUrls: ['./create-user.component.css']
+  selector: "app-create-user",
+  templateUrl: "./create-user.component.html",
+  styleUrls: ["./create-user.component.css"],
 })
 export class CreateUserComponent implements OnInit {
   @Output() sendUserProfileEvent = new EventEmitter<CreatedUser>();
   signupForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder) {}
 
   ngOnInit() {
     this.signupForm = this.formBuilder.group({
@@ -24,10 +23,22 @@ export class CreateUserComponent implements OnInit {
       password: [null, [Validators.required, Validators.minLength(6)]],
       confirm_password: [
         null,
-        [Validators.required, compareValidator('password')]
-      ]
+        [Validators.required, compareValidator("password")],
+      ],
     });
   }
+  // TODO scrolling to error field
+
+  // formSubmitFunction() {
+  //   const firstElementWithError = document.querySelector(".ng-invalid");
+
+  //   if (firstElementWithError) {
+  //     firstElementWithError.scrollIntoView({
+  //       behavior: "smooth",
+  //       block: "center",
+  //     });
+  //   }
+  // }
 
   sendUserProfile() {
     this.sendUserProfileEvent.emit(this.signupForm.value);
