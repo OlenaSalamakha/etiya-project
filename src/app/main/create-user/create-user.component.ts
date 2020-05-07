@@ -27,18 +27,6 @@ export class CreateUserComponent implements OnInit {
       ],
     });
   }
-  // TODO scrolling to error field
-
-  // formSubmitFunction() {
-  //   const firstElementWithError = document.querySelector(".ng-invalid");
-
-  //   if (firstElementWithError) {
-  //     firstElementWithError.scrollIntoView({
-  //       behavior: "smooth",
-  //       block: "center",
-  //     });
-  //   }
-  // }
 
   sendUserProfile() {
     this.sendUserProfileEvent.emit(this.signupForm.value);
